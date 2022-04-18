@@ -1,0 +1,68 @@
+{
+    "name": "<lib_name>",
+    "version": "0.0.1",
+    "description": "a javascript util lib & cli",
+    "bin": "./bin/index.js",
+    "browser": "dist/bundle.umd.js",
+    "main": "dist/bundle.cjs.js",
+    "module": "dist/bundle.esm.js",
+    "types": "dist/types/index.d.ts",
+    "files": [
+        "bin",
+        "README.md"
+    ],
+    "scripts": {
+        "clean": "rimraf dist",
+        "build": "npm run clean && rollup -c && npm run build:api",
+        "build:api": "api-extractor run --local --verbose",
+        "lint": "eslint src --fix --ext .ts,.js",
+        "lint-staged": "lint-staged",
+        "prettier": "prettier --write .",
+        "prepare": "husky install",
+        "test": "jest --coverage --verbose -u"
+    },
+    "repository": {
+        "type": "git",
+        "url": "<your_repo_url>"
+    },
+    "keywords": [
+        "util",
+        "cli"
+    ],
+    "author": "<your_great_name>",
+    "license": "MIT",
+    "lint-staged": {
+        "*.{js,ts}": [
+            "npm run lint",
+            "npm run prettier"
+        ]
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^16.1.0",
+        "@commitlint/config-conventional": "^16.0.0",
+        "@microsoft/api-extractor": "^7.22.2",
+        "@rollup/plugin-commonjs": "^21.1.0",
+        "@rollup/plugin-node-resolve": "^13.2.1",
+        "@rollup/plugin-typescript": "^8.3.2",
+        "@types/jest": "^27.4.1",
+        "@types/node": "^17.0.24",
+        "@typescript-eslint/eslint-plugin": "^5.19.0",
+        "@typescript-eslint/parser": "^5.19.0",
+        "eslint": "^8.12.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "husky": "^7.0.4",
+        "jest": "^27.5.1",
+        "lint-staged": "^12.3.7",
+        "prettier": "^2.6.2",
+        "rimraf": "^3.0.2",
+        "rollup": "^2.70.2",
+        "ts-jest": "^27.1.4",
+        "ts-node": "^10.7.0",
+        "tslib": "^2.3.1",
+        "typescript": "^4.6.3"
+    },
+    "peerDependencies": {
+        "typescript": "^4.6.3"
+    }
+}
